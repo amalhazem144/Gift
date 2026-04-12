@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>هدية لِ آمال</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
+
+    :root{
+      --bg1:#070914;
+      --bg2:#120a1f;
+      --gold:#d7b46a;
+      --gold2:#b99249;
+      --paper:#f8f2e7;
+      --paper2:#f3eadb;
+      --ink:#181818;
+      --shadow:0 10px 30px rgba(0,0,0,.52);
+      --soft:0 14px 35px rgba(0,0,0,.35);
+      --sheet-w:min(880px,96vw);
+      --sheet-h:min(580px,74vh);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Noto Naskh Arabic",system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(1000px 700px at 20% 20%, rgba(215,180,106,.12), transparent 60%),
+        radial-gradient(850px 600px at 80% 30%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      color:#fff;
+      overflow:hidden;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .screen{min-height:100vh;display:grid;place-items:center;padding:24px}
+    #bookScreen{display:none}
+    body.show-book #homeScreen{display:none}
+    body.show-book #bookScreen{display:grid}
+
+    .intro{
+      width:min(1080px,100%);
+      border-radius:28px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+      padding:min(58px,6vw);
+      position:relative;
+      overflow:hidden;
+      min-height:min(560px,70vh);
+      display:grid;
+      place-items:center;
+      text-align:center;
+    }
+    .intro::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(720px 360px at 18% 0%, rgba(215,180,106,.24), transparent 62%),
+        radial-gradient(780px 420px at 82% 100%, rgba(255,255,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(0,0,0,.15), transparent 40%);
+      pointer-events:none;
+    }
+
+    .intro-stack{position:relative;z-index:2;display:grid;gap:18px;justify-items:center;max-width:70ch}
+    .line{
+            opacity:0;
+            transform:translateY(30px) scale(0.96);
+            filter:blur(8px);
+            animation:cinematicIn 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+          }
+          @keyframes cinematicIn{
+                                0%{
+                                  opacity:0;
+                                  transform:translateY(40px) scale(0.94);
+                                  filter:blur(12px);
+                                }
+                                60%{
+                                  opacity:1;
+                                  transform:translateY(-5px) scale(1.02);
+                                  filter:blur(2px);
+                                }
+                                100%{
+                                  opacity:1;
+                                  transform:translateY(0) scale(1);
+                                  filter:blur(0);
+                                }
+                              }
+    @keyframes in{to{opacity:1;transform:translateY(0);filter:blur(0)}}
+    .title{margin:0;font-family:"Aref Ruqaa","Amiri",serif;font-size:clamp(44px,6vw,84px);letter-spacing:.6px;line-height:1.12;text-shadow:0 14px 40px rgba(0,0,0,.45)}
+    .gold-line{width:min(520px,76%);height:1px;background:linear-gradient(90deg, transparent, rgba(215,180,106,.95), transparent);opacity:.9}
+    .dedication{margin:0;font-size:clamp(16px,2.2vw,20px);line-height:2;opacity:.92}
+    .small{margin:0;font-size:14px;opacity:.82;line-height:1.9}
+    .t1{animation-delay:.35s}.t2{animation-delay:1.35s}.t3{animation-delay:2.25s}.t4{animation-delay:3.20s}
+    .to-book{
+      margin-top:10px;
+      padding:14px 22px;
+      border-radius:999px;
+      border:1px solid rgba(215,180,106,.70);
+      background:linear-gradient(135deg, rgba(215,180,106,.30), rgba(255,255,255,.06));
+      color:#fff;
+      font-weight:900;
+
+      opacity:0;
+      transform:translateY(30px) scale(0.9);
+      animation:btnCinematic 1s ease forwards;
+      animation-delay:3.8s;
+    }
+    @keyframes btnCinematic{
+      0%{
+        opacity:0;
+        transform:translateY(40px) scale(0.8);
+      }
+      100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+      }
+    }
+        .title{
+      text-shadow:
+        0 0 10px rgba(215,180,106,.3),
+        0 10px 30px rgba(0,0,0,.5);
+    }
+    @keyframes btnShow{to{opacity:1;transform:translateY(0)}}
+
+    .book-wrap{width:min(1100px,100%);display:grid;gap:16px;place-items:center}
+    .topbar{width:min(980px,100%);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .back,.navbtn{
+      color:rgba(255,255,255,.92);text-decoration:none;border:1px solid rgba(255,255,255,.18);padding:10px 14px;
+      border-radius:999px;background:rgba(255,255,255,.06);cursor:pointer;font:inherit
+    }
+    .note{opacity:.9;font-size:14px;margin:0;text-align:center;flex:1}
+
+    .stage{width:var(--sheet-w);height:var(--sheet-h);perspective:1900px;position:relative}
+    .tap-hint{
+      position:absolute;top:16px;right:18px;font-size:12px;opacity:.75;background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);padding:8px 10px;border-radius:999px;backdrop-filter:blur(8px);z-index:40
+    }
+
+    .book{width:100%;height:100%;position:relative;transform-style:preserve-3d;filter:drop-shadow(0 40px 55px rgba(0,0,0,.45))}
+
+    .sheet{
+      position:absolute;inset:0;transform-style:preserve-3d;transform-origin:right center;
+      transition:transform 900ms cubic-bezier(.2,.75,.12,1), box-shadow 900ms;
+      border-radius:20px;overflow:hidden;box-shadow: 0 8px 18px rgba(0,0,0,.12);
+      border:1px solid rgba(0,0,0,.14);background:var(--paper)
+    }
+    .sheet.flipped{transform:rotateY(-180deg);box-shadow:0 10px 26px rgba(0,0,0,.18)}
+
+    .face{position:absolute;inset:0;padding:min(38px,4.2vw);display:flex;flex-direction:column;justify-content:center;gap:14px;color:var(--ink)}
+    .front{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .backside{
+      transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(0,0,0,.03), transparent 65%),
+        linear-gradient(180deg, rgba(0,0,0,.03), transparent 30%),
+        var(--paper)
+    }
+    .paper{
+      background:
+        radial-gradient(1200px 650px at 25% 0%, rgba(215,180,106,.10), transparent 62%),
+        radial-gradient(900px 520px at 80% 100%, rgba(0,0,0,.05), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.35), transparent 35%),
+        var(--paper)
+    }
+    .sheet::after{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,0) 84%, rgba(0,0,0,.10) 100%);
+      mix-blend-mode:multiply;opacity:.35
+    }
+
+    .cover{
+      background:
+        radial-gradient(700px 420px at 30% 18%, rgba(215,180,106,.22), transparent 62%),
+        radial-gradient(820px 520px at 80% 80%, rgba(255,255,255,.08), transparent 64%),
+        linear-gradient(135deg, rgba(20,20,30,.96), rgba(10,8,18,.98));
+      border:1px solid rgba(215,180,106,.40)
+    }
+    .cover .front,.cover .backside{color:#fff}
+    .cover .backside{background:linear-gradient(135deg, rgba(20,20,30,.96), rgba(10,8,18,.98))}
+    .cover-title{ font-family:"Aref Ruqaa","Amiri",serif; font-size: clamp(38px, 5.2vw, 72px);  margin:0; letter-spacing:.6px; text-align:center; color:#ffffff; text-shadow:0 6px 25px rgba(0,0,0,.6);}
+    .cover-sub{ margin:0; text-align:center; opacity:.95; line-height:1.95; font-size: clamp(14px, 2vw, 18px); color:#f4e6c3;}
+    .page-title{font-weight:900;margin:0;font-size:18px;letter-spacing:.2px;opacity:.92;text-align:center}
+    .page-num{position:absolute;bottom:14px;left:16px;font-size:12px;opacity:.55}
+    .poem{font-family:"Amiri","Noto Naskh Arabic",serif;font-size:clamp(16px,2.1vw,22px);line-height:2.08;white-space:pre-line;text-align:center}
+    .blank-box{
+      height:100%;width:100%;border:2px dashed rgba(0,0,0,.12);border-radius:16px;display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:24px;font-size:22px;line-height:2;color:rgba(0,0,0,.42);background:rgba(255,255,255,.18)
+    }
+    .image-box{
+      width:fit-content;
+      max-width:80%;
+      height:auto;
+      min-height:unset;
+      border-radius:16px;
+      background:white;
+      box-shadow:0 10px 28px rgba(0,0,0,.12); 
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:12px;
+      margin:auto;
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .page-image{
+      max-width:420px;
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      border-radius:12px;
+      display:block;
+    }
+    .image-box.has-image{color:transparent}
+
+    .zones{
+      position:absolute;
+      inset:0;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      z-index: 50;
+      pointer-events:none;
+    }
+
+    .zone{
+      pointer-events:auto;
+      cursor:pointer;
+    }
+
+    @media (max-width:540px){
+      .screen{padding:14px}
+      .face{padding:18px}
+      .note,.tap-hint{display:none}
+      .topbar{justify-content:center}
+      .poem{font-size:18px}
+      .blank-box,.image-box{font-size:15px}
+    }
+
+    .candles{
+      position:absolute;
+      top:-18px;
+      z-index:3;
+      width:180px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      }
+      .cake-page{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+    gap:24px;
+  }
+
+  .cake-wrap{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:min(320px, 85%);
+  }
+
+  .cake-glow{
+    position:absolute;
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,215,140,.45) 0%, rgba(255,215,140,.18) 35%, rgba(255,215,140,0) 72%);
+    filter:blur(18px);
+    z-index:0;
+  }
+
+  .cake-image{
+    position:relative;
+    z-index:2;
+    width:220px;
+    max-width:80%;
+    border-radius:14px;
+    box-shadow:
+      0 0 18px rgba(255,220,150,.28),
+      0 14px 38px rgba(0,0,0,.25);
+  }
+
+  .candles{
+    position:absolute;
+    top:-18px;
+    z-index:3;
+    width:180px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+  }
+
+  .candle{
+    position:relative;
+    width:10px;
+    height:34px;
+    border-radius:4px;
+    background:linear-gradient(180deg, #fff6d8, #f2d48b);
+    box-shadow:0 0 8px rgba(255,240,180,.35);
+  }
+
+  .flame{
+    position:absolute;
+    left:50%;
+    top:-14px;
+    transform:translateX(-50%);
+    width:10px;
+    height:16px;
+    border-radius:50% 50% 50% 50%;
+    background:radial-gradient(circle at 50% 35%, #fff8d6 0%, #ffd36b 45%, #ff9f1c 78%, rgba(255,159,28,.25) 100%);
+    box-shadow:
+      0 0 10px rgba(255,210,90,.9),
+      0 0 22px rgba(255,180,50,.55);
+  }
+
+  .candle:nth-child(2) .flame{ animation-duration:1.3s; animation-delay:.2s; }
+  .candle:nth-child(3) .flame{ animation-duration:1s; animation-delay:.15s; }
+  .candle:nth-child(4) .flame{ animation-duration:1.25s; animation-delay:.08s; }
+  .candle:nth-child(5) .flame{ animation-duration:1.15s; animation-delay:.18s; }
+
+  .cake-text{
+    font-family:"Amiri", serif;
+    font-size:26px;
+    line-height:2;
+    color:#221b12;
+    text-shadow:
+      0 0 8px rgba(255,228,170,.20),
+      0 1px 0 rgba(255,255,255,.45);
+  }
+
+  @keyframes cakePulse{
+    0%,100%{ transform:scale(1); opacity:.72; }
+    50%{ transform:scale(1.08); opacity:1; }
+  }
+
+  @keyframes cakeFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-6px); }
+  }
+
+  @keyframes flicker{
+    0%{ transform:translateX(-50%) scale(1) rotate(-2deg); opacity:.95; }
+    25%{ transform:translateX(-50%) scale(1.06,.96) rotate(2deg); opacity:1; }
+    50%{ transform:translateX(-50%) scale(.96,1.08) rotate(-1deg); opacity:.92; }
+    75%{ transform:translateX(-50%) scale(1.04,.98) rotate(1deg); opacity:1; }
+    100%{ transform:translateX(-50%) scale(.98,1.04) rotate(-2deg); opacity:.94; }
+  }
+
+  @keyframes textGlow{
+    0%,100%{ opacity:1; transform:translateY(0); }
+    50%{ opacity:.96; transform:translateY(-2px); }
+  }
+
+  @media (max-width:540px){
+    .cake-image{ width:180px; }
+    .candles{ width:145px; top:-14px; }
+    .cake-text{ font-size:21px; line-height:1.9; }
+    .cake-glow{ width:190px; height:190px; }
+  }
+  /* =========================
+   Responsive Fixes
+========================= */
+
+html, body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+.screen{
+  min-height:100vh;
+  padding:16px;
+}
+
+.book-wrap{
+  width:min(1100px, 100%);
+  max-width:100%;
+  display:grid;
+  gap:14px;
+  place-items:center;
+}
+
+.topbar{
+  width:min(980px, 100%);
+  max-width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.note{
+  text-align:center;
+  flex:1;
+  min-width:180px;
+}
+
+.stage{
+  width:min(900px, 100%);
+  max-width:100%;
+  height:min(600px, 74vh);
+  position:relative;
+  perspective:1900px;
+}
+
+.book{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 16px 26px rgba(0,0,0,.18));
+}
+
+.sheet{
+  width:100%;
+  height:100%;
+}
+
+.face{
+  padding:clamp(16px, 2.8vw, 38px);
+  overflow:hidden;
+}
+
+.page-title{
+  font-size:clamp(16px, 2vw, 22px);
+  text-align:center;
+}
+
+.cover-title{
+  font-size:clamp(30px, 5vw, 72px);
+  text-align:center;
+}
+
+.cover-sub{
+  font-size:clamp(13px, 1.7vw, 18px);
+  text-align:center;
+}
+
+.poem{
+  font-size:clamp(15px, 2vw, 22px);
+  line-height:2;
+}
+
+.blank-box{
+  width:100%;
+  min-height:220px;
+  border-radius:14px;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.9;
+}
+
+.image-box{
+  width:100%;
+  height:100%;
+  min-height:280px;
+  border-radius:16px;
+  background:#f3ecdf;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:10px;
+}
+
+.page-image{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:12px;
+  display:block;
+}
+
+.cake-page{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:20px;
+}
+
+.cake-wrap{
+  width:min(320px, 85%);
+}
+
+.cake-image{
+  width:min(260px, 80vw);
+  max-width:100%;
+  height:auto;
+}
+
+.cake-text{
+  font-size:clamp(18px, 2.3vw, 28px);
+  line-height:2;
+  text-align:center;
+}
+
+.page-num{
+  font-size:12px;
+}
+
+/* =========================
+   Tablet
+========================= */
+@media (max-width: 900px){
+  .stage{
+    height:min(540px, 68vh);
+  }
+
+  .note{
+    font-size:13px;
+  }
+
+  .tap-hint{
+    font-size:11px;
+    padding:6px 8px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+@media (max-width: 600px){
+  .screen{
+    padding:10px;
+  }
+
+  .topbar{
+    justify-content:center;
+    gap:8px;
+  }
+
+  .back{
+    padding:8px 12px;
+    font-size:13px;
+  }
+
+  .note{
+    width:100%;
+    font-size:12px;
+    order:3;
+  }
+
+  .tap-hint{
+    display:none;
+  }
+
+  .stage{
+    width:100%;
+    height:70vh;
+    min-height:420px;
+  }
+
+  .face{
+    padding:16px 14px;
+  }
+
+  .cover-title{
+    font-size:30px;
+  }
+
+  .cover-sub{
+    font-size:13px;
+    line-height:1.8;
+  }
+
+  .page-title{
+    font-size:16px;
+    margin-bottom:10px;
+  }
+
+  .poem{
+    font-size:16px;
+    line-height:1.9;
+  }
+
+  .blank-box{
+    min-height:180px;
+    font-size:14px;
+  }
+
+  .image-box{
+    min-height:220px;
+    padding:8px;
+  }
+
+  .cake-text{
+    font-size:20px;
+    line-height:1.9;
+  }
+
+  .cake-wrap{
+    width:85%;
+  }
+
+  .cake-image{
+    width:180px;
+  }
+}
+
+/* =========================
+   Very Small Phones
+========================= */
+@media (max-width: 380px){
+  .stage{
+    height:68vh;
+    min-height:380px;
+  }
+
+  .cover-title{
+    font-size:26px;
+  }
+
+  .poem{
+    font-size:15px;
+  }
+
+  .cake-text{
+    font-size:18px;
+  }
+
+  .page-title{
+    font-size:15px;
+  }
+}
+/* خلي الضغط يمر لمناطق التنقل عند الحواف */
+.page-image,
+.image-box,
+.cake-image,
+.cake-wrap,
+.cake-page{
+  pointer-events:none;
+}
+.face{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+/* تحسين ظل الكتاب */
+.book{
+  filter: drop-shadow(0 16px 26px rgba(0,0,0,.18));
+}
+
+.sheet{
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+/* إعادة تفعيل التنقل من الحواف */
+.zones{
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  z-index:50;
+  pointer-events:none;
+}
+
+.zone{
+  pointer-events:auto;
+  cursor:pointer;
+}
+
+.page-image,
+.image-box,
+.cake-image,
+.cake-wrap,
+.cake-page{
+  pointer-events:none;
+}
+
+  </style>
+</head>
+<body>
+  <section id="bookScreen" class="screen">
+    <div class="book-wrap">
+      <div class="topbar">
+        <button class="back" id="backHome">رجوع</button>
+        <div style="display:flex;gap:8px">
+          <button class="navbtn" id="prevBtn">السابق</button>
+          <button class="navbtn" id="nextBtn">التالي</button>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="book" id="book">
+          <div class="zones">
+            <div class="zone" id="leftZone" aria-label="السابق"></div>
+            <div class="zone" id="rightZone" aria-label="التالي"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="homeScreen" class="screen home">
+    <div class="intro">
+      <div class="intro-stack">
+        <h1 class="title line t1">كل عام وأنت أميرة 🌹</h1>
+        <div class="gold-line line t2"></div>
+        <p class="dedication line t3">إلى آمال…<br>هدية أخيرة 🤍</p>
+        <button class="to-book" id="openBook">إلى الهدية</button>
+      </div>
+    </div>
+  </section>
+
+<script>
+const couplets = [
+  ["شَكَوْتُ لِنَجْمٍ فِي السَّمَاءِ عَذَابِيَا", "أُسَائِلُهُ مَا ضَرَّ لَوْ كُنْتُ خَالِيَا"],
+  ["يُسَامِرُنِي كُلَّ اللَّيَالِي بِطُولِهَا", "وَمَا ضَرَّ لَوْ كَانَ الحَبِيبُ جِوَارِيَا"],
+  ["يَقُولُ أَنَّ الحُبَّ ضَرْبُ جُنُونِيَا", "وَيُخْبِرُنِي أَنَّ الهَوَى مَرَضٌ بِيَا"],
+  ["يَقُولُ أَنَّ الحُبَّ ضَرْبُ جُنُونِيَا", "وَيُخْبِرُنِي أَنَّ الهَوَى مَرَضٌ بِيَا"],
+  ["وَيَأْمُرُنِي بِتَرْكِ حُبِّ حَبِيبَتِي", "وَيَنْفِي عَنِ العَاشِقِينَ مَا كَانَ مَاضِيَا"],
+  ["أَلَا يَا نَجْمُ قُلْ لِي كَيْفَ أَنْسَى غَزَالَتِي", "أَنَا وَلِهٌ فَكَيْفَ يَمْضِي مَسَائِيَا"],
+  ["وَلِلَّهِ دَرِّي مَا جُنِنْتُ مِنَ الهَوَى", "وَحَاشَا أُجَنُّ مِنْ طَبِيبِي المُدَاوِيَا"],
+  ["وَلِلَّهِ دَرِّي مَا جُنِنْتُ مِنَ الهَوَى", "وَحَاشَا أُجَنُّ مِنْ طَبِيبِي المُدَاوِيَا"],
+  ["وَفِي كُلِّ مَرَّةٍ أَقُولُ أُحِبُّهَا", "يَطُولُ الجَفَا سَيْفًا يَقُصُّ حَشَائِيَا"],
+  ["وَلَوْ أَنَّ قَتْلِي فِدْيَةٌ لِحَيَاتِهَا", "لَكُنْتُ فَدَيْتُهَا بِعُمْرِي وَرُوحِيَا"],
+  ["وَقَدْ صَاحَ مَهْلًا لَسْتُ أَفْهَمُ حَالَكُمْ", "وَمَعَ أَنَّنِي قَدْ عِشْتُ دَهْرًا مُوَاسِيَا"],
+  ["وَقَدْ صَاحَ مَهْلًا لَسْتُ أَفْهَمُ حَالَكُمْ", "وَمَعَ أَنَّنِي قَدْ عِشْتُ دَهْرًا مُوَاسِيَا"],
+  ["أَيَا أَيُّهَا المَلْهُوفُ مَا أَنْتَ فَاعِلٌ", "تَمُوتُ فِدَا حُبٍّ وَلَسْتَ مُبَالِيَا"],
+  ["وَلَوْ كَانَ حُبُّهَا لَكُمْ صَادِقًا لَمَا", "صَرَخْتُ وَلَا سَمِعْتَ مِنِّي سُؤَالِيَا"],
+  ["فَكَيْفَ لِمَقْتُولٍ يَحِنُّ لِقَاتِلٍ", "وَكَيْفَ لِمَكْلُومٍ يَعُدُّ اللَّيَالِيَا"],
+  ["فَكَيْفَ لِمَقْتُولٍ يَحِنُّ لِقَاتِلٍ", "وَكَيْفَ لِمَكْلُومٍ يَعُدُّ اللَّيَالِيَا"],
+  ["فَقُلْتُ وَدَمْعِي سَابِقٌ لِكَلَامِيَا", "أَنَا يَا خَلِيلِي قَدْ عَشِقْتُ فَنَائِيَا"],
+  ["أَنِيسِي أَلَسْتَ تَعْلَمُ الحُبَّ غَلَّابًا", "وَمَا اخْتَرْتُهُ لَكِنَّهُ لَقَضَائِيَا"],
+  ["فَلَوْ كَانَ عِشْقُ العَاشِقِينَ بُحَيْرَةً", "فَقَدْ كَانَ عِشْقِي كَالبِحَارِ العَوَالِيَا"],
+  ["فَلَوْ كَانَ عِشْقُ العَاشِقِينَ بُحَيْرَةً", "فَقَدْ كَانَ عِشْقِي كَالبِحَارِ العَوَالِيَا"],
+  ["وَلَوْ كَانَ عِشْقُ العَاشِقِينَ كَوَاكِبًا", "فَيَا نَجْمُ عِشْقِي كَانَ مِلْءَ سَمَائِيَا"],
+  ["فَحُبِّي يَفُوقُ الشَّمْسَ نُورًا وَأَنَّنِي", "لَفِي الحُبِّ سُلْطَانٌ وَقَدْ ضَاعَ تَاجِيَا"],
+  ["فَقُلْتُ لَهَا مِنْ لَوْعَتِي رُبَّ أَنَّنِي", "زَلَلْتُ وَغُفْرَانُ الحَبِيبِ رَجَائِيَا"],
+  ["فَقُلْتُ لَهَا مِنْ لَوْعَتِي رُبَّ أَنَّنِي", "زَلَلْتُ وَغُفْرَانُ الحَبِيبِ رَجَائِيَا"],
+  ["فَحِنِّي عَلَى قَلْبِي القَتِيلِ المُعَذَّبَا", "وَضُمِّي الحَبِيبَ بَعْدَ شَوْقِ فُؤَادِيَا"],
+  ["وَبَيْنَ الضُّلُوعِ المُرْهَفَاتِ ضَعِي لَهُ", "مَكَانًا عَسَى رَبِّي يُزِيلُ ابْتِلَائِيَا"],
+  ["فَلَوْ أَنَّ لِي بَيْنَ الضُّلُوعِ عَرِيشَةً", "لَعِشْتُ بِهَا عَيْشَ المُلوكِ نَعِيمِيَا"],
+  ["فَلَوْ أَنَّ لِي بَيْنَ الضُّلُوعِ عَرِيشَةً", "لَعِشْتُ بِهَا عَيْشَ المُلوكِ نَعِيمِيَا"],
+  ["وَلَكِنَّ لِي بَعْدَ الفِرَاقِ خَلِيلَانِ", "هُمَا أَمَلِي وَالطَّيْفُ حِينَ مَنَامِيَا"],
+  ["سَأَلْتُ إِذَا مَا زَارَ طَيْفِي مَنَامَهَا", "كَمَا أَنَّهَا تَزُورُ دَوْمًا مَنَامِيَا"],
+  ["فَرَدَّتْ بِعُنْفٍ أَحْرَقَتْنِي بِرَدِّهَا", "أَنَا يَا عَزِيزِي قَدْ عَلِمْتُ عِلَاجِيَا"],
+  ["فَرَدَّتْ بِعُنْفٍ أَحْرَقَتْنِي بِرَدِّهَا", "أَنَا يَا عَزِيزِي قَدْ عَلِمْتُ عِلَاجِيَا"],
+  ["تَرَكْتُ الهَوَى طَوْعًا وَسِرْتُ وَحِيدَةً", "لِأَنِّي فَطِنْتُ الأَمْرَ قَبْلَ سُقُوطِيَا"],
+  ["فَلَا دَمْعَ عِنْدِي أَوْ فِرَاقَ وَلَا نَوَى", "وَلَا أَرَقَ وَلَا هُمُومَ بِبَالِيَا"],
+  ["أَنَامُ وَجَفْنِي مُطْمَئِنٌّ كَأَنَّمَا", "عَلَى غَيْمَةٍ نَوْمِي حَرِيرٌ غِطَائِيَا"],
+  ["أَنَامُ وَجَفْنِي مُطْمَئِنٌّ كَأَنَّمَا", "عَلَى غَيْمَةٍ نَوْمِي حَرِيرٌ غِطَائِيَا"],
+  ["وَمَا كُنْتُ يَوْمًا لِلنُّجُومِ مُسَامِرَةْ", "وَلَا طَيْفُ إِنْسٍ قَدْ يَجِيءُ بِبَالِيَا"],
+  ["أَعِيشُ وَنَبْضُ القَلْبِ لَيْسَ مُقَطَّعًا", "وَلَيْسَ بِحَالِ الآخَرِينَ مُبَالِيَا"],
+  ["أَجَبْتُ عَلَيْهَا أَيُّهَا القَمَرُ العَلِيْ", "إِذَا مِلْتِ عَنِّي اليَوْمَ مَالَ اعْتِدَالِيَا"],
+  ["أَجَبْتُ عَلَيْهَا أَيُّهَا القَمَرُ العَلِيْ", "إِذَا مِلْتِ عَنِّي اليَوْمَ مَالَ اعْتِدَالِيَا"],
+  ["وَقَلْبِي إِذَا مَا مَالَ عَنْكِ نَزَعْتُهُ", "وَلَكِنَّ لِي قَلْبًا إِلَيْكِ مُوَالِيَا"],
+  ["فَقَلْبِي هَيُوبٌ لَا يُخَاطِرُ إِنَّمَا", "بِحُبِّكِ شَهْمٌ لَا يَهَابُ مُنَادِيَا"],
+  ["وَقَدْ خُضْتُ حَرْبًا فِي سَبِيلِ رِضَاكُمُ", "وَمِنْ أَجْلِ حُبٍّ قَدْ تَرَكْتُ بِلَادِيَا"],
+  ["وَقَدْ خُضْتُ حَرْبًا فِي سَبِيلِ رِضَاكُمُ", "وَمِنْ أَجْلِ حُبٍّ قَدْ تَرَكْتُ بِلَادِيَا"],
+  ["وَمَا عَادَ لِي أَهْلٌ وَلَا وَطَنٌ أَنَا", "بِلَاكِ بِلَا جَاهٍ وَلَا أَمَلٌ لِيَا"],
+  ["وَقَدْ سِرْتُ وَحْدِي فِي الفَلَاةِ لِأَجْلِكُمْ", "وَلَمْ يَبْقَ لِي إِلَّا القِتَالُ وَحُبِّيَا"],
+  ["أَنَا رُمْتُ حُبِّي فِي البِلَادِ بِأَسْرِهَا", "لِخَمْسِ سِنِينَ مَا لَقِيتُ مُرَادِيَا"],
+  ["أَنَا رُمْتُ حُبِّي فِي البِلَادِ بِأَسْرِهَا", "لِخَمْسِ سِنِينَ مَا لَقِيتُ مُرَادِيَا"],
+  ["وَمِنْ بَعْدِ خَمْسٍ فِي القِتَالِ قَضَيْتُهَا", "رَجَعْتُ لَهَا فَأَبْصَرَتْنِي سِوَائِيَا"],
+  ["بُعَيْدَ قِتَالِي وَانْتِصَارِي قَتَلْتِنِي", "وَأَغْوَيْتِنِي حَتَّى جَهِلْتُ سَوَائِيَا"],
+  ["فَقَالَتْ وَهَلْ يَوْمًا سَأَلْتُكَ أَنْ تَخُوضَ", "عَنِّي حُرُوبًا أَوْ تَدُوسَ تُرَابِيَا"],
+  ["فَقَالَتْ وَهَلْ يَوْمًا سَأَلْتُكَ أَنْ تَخُوضَ", "عَنِّي حُرُوبًا أَوْ تَدُوسَ تُرَابِيَا"],
+  ["فَأَصْبَحْتُ مَيْتًا لَا بِسَيْفِ عَدُوٍّ بَلْ", "بِسَيْفِ حَبِيبٍ لَا يُرِيدُ انْتِصَارِيَا"],
+  ["وَلَا وَطَنٌ لِي كَيْ أَعُودَ فَأُحْتَضَنْ", "وَلَا أَحَدٌ غَيْرِي يُقِيمُ عَزَائِيَا"],
+  ["فَيَا نَجْمُ قُلْ لِي هَلْ سَمِعْتَ كَلَامَنَا", "وَهَلْ أَنَّنِي أَخْطَأْتُ عِنْدَ قِتَالِيَا"],
+  ["فَيَا نَجْمُ قُلْ لِي هَلْ سَمِعْتَ كَلَامَنَا", "وَهَلْ أَنَّنِي أَخْطَأْتُ عِنْدَ قِتَالِيَا"],
+  ["فَقَالَ لَنَا مِنْ بَعْدِ رَشْفَةِ قَهْوَةٍ", "سَمِعْتُ الحَدِيثَ مِنْكُمَا فَاسْمَعَانِيَا"],
+  ["لَدَيْنَا هُنَا قَلْبَانِ ذَا القَلْبُ جَامِدٌ", "وَذَا قَلْبُ عَاشِقٍ يُعَذَّبُ بَالِيَا"],
+  ["فَشَتَّانَ مَا بَيْنَ القُلُوبِ بِحَالِكُمْ", "وَإِنِّي أَظُنُّنِي لِحَالِكَ بَاكِيَا"],
+  ["فَشَتَّانَ مَا بَيْنَ القُلُوبِ بِحَالِكُمْ", "وَإِنِّي أَظُنُّنِي لِحَالِكَ بَاكِيَا"],
+  ["وَلَا لَوْمَ لِي عَلَيْكِ فَأَنْتِ حُرَّةٌ", "وَلَكِنَّ وَصْلَكُمْ لِذَا القَلْبُ شَافِيَا"],
+  ["فَجُودِي لَهُ بِبَعْضِ حُبٍّ لَعَلَّهُ", "يُعِيدُ مِنَ المَمَاتِ مَنْ كَانَ مَاضِيَا"],
+  ["وَقَدْ حُرِّمَتْ عَلَيْكِ مِنْ قَبْلُ رُوحُهُ", "فَرُحْمًا بِمَنْ كَانَ نَظْمُ القَوَافِيَا"],
+  ["وَقَدْ حُرِّمَتْ عَلَيْكِ مِنْ قَبْلُ رُوحُهُ", "فَرُحْمًا بِمَنْ كَانَ نَظْمُ القَوَافِيَا"],
+  ["فَأَنْهَتْ حَدِيثًا دُونَمَا أَيِّ رَحْمَةٍ", "وَأَنْهَتْ بِهِ آمالَ قَلْبِي وَحُبِّيَا"],
+  ["كَفَانِي فَإِنِّي قَدْ مَلِلْتُ حِوَارَكُمْ", "وَإِنِّي اتَّخَذْتُ فِيهِ الآنَ قَرَارِيَا"],
+  ["أَنَا فِي غِنًى عَنْ وَصْلِهِ وَوِصَالِهِ", "فَمُتْ عَطَشًا وَلَا تَرِدْ لِمِيَاهِيَا"],
+  ["أَنَا فِي غِنًى عَنْ وَصْلِهِ وَوِصَالِهِ", "فَمُتْ عَطَشًا وَلَا تَرِدْ لِمِيَاهِيَا"],
+  ["فَقَالَ وَدَمْعُ النَّجْمِ أَنْهَارَ سَارِيَة", "يُعَانِقُنِي وَالدَّمْعُ بَلَّ رِدَائِيَا"],
+  ["هَنِيئًا لِمَنْ مَاتَ بِالسَّيْفِ مَرَّةً", "وَتَعْسًا لِمَنْ مَاتَ بِالحُبِّ خَالِيَا"],
+  ["وَهَا قَدْ سَمِعْتَهَا فَسِرْ نَحْوَ مَجْهُولٍ", "وَلَا تَنْظُرَنَّ لِلْوَرَاءِ مُبَالِيَا"],
+  ["وَهَا قَدْ سَمِعْتَهَا فَسِرْ نَحْوَ مَجْهُولٍ", "وَلَا تَنْظُرَنَّ لِلْوَرَاءِ مُبَالِيَا"],
+  ["فَعُذْرًا صَدِيقِي إِنَّمَا الأَمْرُ قَدْ كَانَ", "وَالعِلْمُ عِنْدَ اللَّهِ أَلَّا تَلَاقِيَا"]
+];
+
+const pages = [];
+
+pages.push({kind:'cover'});
+pages.push({kind:'cake'});
+pages.push({
+  kind:'blank',
+  title:'مقدمة',
+  text:
+`
+في يوم ميلادك
+تتجمّل الكلمات وتبحث الحروف عن أجمل معانيها لتكتب اسمك بين السطور.
+ليس هذا الكتاب إلا محاولة صغيرة لِجمع بعض الشعور الذي يعجز الكلام أحيانًا عن قوله،
+ لكن القلب يعرفه جيدًا وأظن انك يا آمال تعرفين هذا الشعور  أيضا 
+فكل الحب لمن كانت لقلبي الحبيبة والصديقة الأجمل على الإطلاق ،
+وستبقى الاخت الصغيرة التي لا يقوى القلب على العيش بلاها
+`
+});
+
+pages.push({
+  kind:'blank',
+  title:'مقدمة',
+  text:
+
+`سيرتكِ الذاتية:
+جميلة، لافتة، مُبهرة، فاتنة،
+ رائعة، بَهِيَّة، مثالية، جذابة ،
+  حَسَنَة، خَلابَة، ساحرة، مليحة،
+مُختلفة، مُذهلة ، بَراقَة ، نادرة ،
+ مُميزة، ناعمة، مُلهمة، لؤلؤة،
+  لطيفة، مفعمة بالحب
+  عظيمة، عَذْبَة، أنيقة.`
+
+});
+
+pages.push({
+  kind:'blank',
+  title:'مقدمة',
+  text:
+  `
+    كل عام وأنتِ
+    حكاية جمالٍ لا تشبه غيرها،
+    ونورًا يمرّ في الأيام
+    فيجعلها أهدأ وأجمل.
+    لتبقَ أيامك مليئة بالفرح،
+    وليبقَ قلبك كما هو
+    مضيئًا باللطف والابتسامة.
+    فَاليومَ جميع النجومِ تُعايدُ القمرَ
+    يا آمال 🤍
+  `
+});
+
+for(let i=1;i<=1;i++){
+  pages.push({kind:'image', num:1, src:'imges/15.webp'});
+  pages.push({kind:'image', num:2, src:'imges/1.webp'});
+  pages.push({kind:'image', num:3, src:'imges/8.webp'});
+  pages.push({kind:'image', num:4, src:'imges/9.webp'});
+  pages.push({kind:'image', num:5, src:'imges/10.webp'});
+  pages.push({kind:'image', num:6, src:'imges/14.webp'});
+  pages.push({kind:'image', num:7, src:'imges/19.webp'});
+  pages.push({kind:'image', num:8, src:'imges/24.webp'});
+  pages.push({kind:'image', num:9, src:'imges/29.webp'});
+  pages.push({kind:'image', num:10, src:'imges/30.webp'});
+  }
+
+for(let i=0;i<couplets.length;i+=4){
+  pages.push({kind:'poem', title:'قصيدة', couplets:couplets.slice(i,i+3)});
+}
+
+pages.push({kind:'blank', title:'الخاتمة', text:`
+وفي نهاية هذه القصة 
+الحزينة من جانبي , السعيدة من جانبك
+لست أملك من الكلمات ما يكفي لأعبر بها عن جميع الشعور تجاهك,
+لكنني أعلم يا آمال أنك إمرأة صالحة , وأتمنى أن تكوني أتمَّ نساء عصرك سعادةً
+ولكن كما تعلمين ما كانت دنيا الحبِّ عادلة بما يكفي لإنصافي يا آمال
+يَقولُ الناسُ أنَّ تأثري بحسن المرواني وقيس وأبي فراس 
+بعد قصتنا سيجعل مني شاعر  حزن وفراق الى الأبد 
+وَأنا يا آمال أُفَضِلُ السعادة والفرح في الشعر على الحزن 
+وهذا قلبي يعلم جيدًا أنَّ السعادة هي أنتِ 
+وأنتِ هي السعادة
+`});
+
+pages.push({kind:'blank', title:'الخاتمة', text:
+
+`
+لدينا هنا 
+معادلة بسيطة جدًا  ...
+ Happiness∞ =t→∞lim​(Amal+Me)
+فكيف أكتب السعادة وأنا لا أمتلكها ولا أمتلك حتى الحق في أمتلاكها
+`});
+
+pages.push({kind:'blank', title:'الخاتمة', text:` 
+ومع ذلك أنا مؤمن يا آمال ... أنَّ السعادة أمر نسبي لا مطلق
+وكذلك الحزن ايضًا , فلا حزن يدوم ولا سعادة , وكلاهما ينهي الآخر
+أنظري لنفسك مثلا  , منذ فترة ليست بالبعيدة كنت مُشوشة الذهن متقلبة المزاج وحزينة ربما
+ولكن ها أنت ذا اليوم عروسًا لا يخالج صدرك الحزن ...
+ومن ثمَّ ستكونين زوجًا صالحة , وبعدها أُمًا مربية (ربما لطفلين أو أكثر من يدري) 
+وربما تُكَنِّينَ بِـــــ (أم أنس)
+وربما يكون اسم ابنتك الاولى على اسم والدة زوجك أو ربما على اسم والدتك 
+أو ربما يكون اسمها (ربا مثلًا  أو رؤى أو ملك أو سبيل أو أسماء أو نورهان )
+`});
+pages.push({kind:'blank', title:'الخاتمة', text:`
+وكذلك أنا يا آمال ...
+سوف يمضي بي مركب الدنيا , فيزول حزني , وقد أتزوج يومًا ما ...
+وأعتقد أنني سأكون أبًا جيدًا
+و أنا أُفَضِّلُ أن أكون أبًا لعشرة صبيان وفتاة 
+وسوف يكون اسم ابني الاول مثل اسم أبي
+أما عن ابنتي سوف أترك أمر اسمها لزوجتي المستقبلية 
+`});
+
+pages.push({kind:'blank', title:'الخاتمة', text:`
+بصراحة انا زعلان كثير منك ومن نفسي 
+منك لانو كان عندي عشم كبير ومني لاني يمكن قصرت شوية بحق حالي
+أنا بعرف حاجة وحدة أكيدة بس انو مفيش حد حبك قد مأنا حبيتك ولا حتى أبوك أو أمك معتقدش 
+ويمكن كمان حبيتك اكثر من نفسك 
+عالعموم هدا حال الدنيا وهدا قدر ربنا ولا اعتراض الحمد لله 
+اخر فترة كنت متوقع جدًا يجي هدا اليوم اللي اصحى فيه الاقيك زوجة حدا تاني
+يمكن اكون حبيتك اكثر منه بس يمكن يعرف يسعدك اكثر مني ويعيشك عيشة احسن
+فبتمنالك السعادة والحياة الهنية والتمام على خير 
+`});
+
+
+pages.push({kind:'blank', title:'نهاية الكتاب', text:`
+أتمنى أن تكون هذه الهدية مناسبة لِمقامكم العَالِ 
+وأتمنى أن تكوني أتممتِ قرأت جميع صفحات الكتاب 
+شُكرًا 🤍
+`});
+
+
+pages.push({kind:'blank', title:'نهاية الكتاب', text:`
+
+
+تَمَّتْ الهَدِيةُ بِحَمْدِ اللَّه
+
+`
+});
+
+const book = document.getElementById('book');
+const body = document.body;
+let current = 0; // 0 = الغلاف
+
+function faceHTML(page, pageNum){
+  if(page.kind === 'cover'){
+    return `
+      <div class="face front cover">
+        <h1 class="cover-title">عيد ميلاد سعيد</h1>
+        <p class="cover-sub">هذا الكتاب إهداء لِآمال... <br> التي لطالما كانت الاقرب الى قلبي  </p>
+        <p class="cover-sub">بحبٍّ يليق بك</p>
+      </div>
+      <div class="face backside cover"></div>
+    `;
+  }
+
+  let inner = '';
+
+  if(page.kind === 'blank'){
+    inner = `
+      <h3 class="page-title">${page.title || ''}</h3>
+      <div class="blank-box">${(page.text || '').replace(/\n/g,'<br>')}</div>
+    `;
+  }
+  else if(page.kind === 'cake'){
+    inner = `
+      <div class="cake-page">
+        <div class="cake-wrap">
+          <div class="cake-glow"></div>
+
+          <img src="./imges/cake.webp" class="cake-image" loading="lazy" alt="cake">
+        </div>
+
+        <div class="cake-text">
+          وُلِدَ الجمالُ يومَ وُلِدتِ يا آمال<br>
+          14 / 4 / 2006<br>
+          14 / 4 / 2026
+        </div>
+      </div>
+    `;
+  }
+  else if(page.kind === 'image'){
+    const has = (page.src || '').trim() !== '';
+    inner = `
+      <h3 class="page-title">صورة ${page.num || ''}</h3>
+      <div class="image-box ${has ? 'has-image' : ''}">
+        ${has
+          ? `<img src="${page.src}" class="page-image" loading="lazy" alt="صورة ${page.num || ''}">`
+          : 'ضع الصورة هنا'}
+      </div>
+    `;
+  }
+  else if(page.kind === 'poem'){
+    const txt = (page.couplets || []).map(c => `${c[0]}\n${c[1]}`).join('\n\n');
+    inner = `
+      <h3 class="page-title">${page.title || 'قصيدة'}</h3>
+      <div class="poem">${txt}</div>
+    `;
+  }
+
+  return `
+    <div class="face front paper">
+      ${inner}
+      <span class="page-num">${pageNum}</span>
+    </div>
+    <div class="face backside paper"></div>
+  `;
+}
+
+function renderBook(){
+  book.querySelectorAll('.sheet').forEach(el=>el.remove());
+  for(let i=pages.length-1;i>=0;i--){
+    const sheet = document.createElement('div');
+    sheet.className = 'sheet' + (i <= current-1 ? ' flipped' : '');
+    sheet.style.zIndex = String(pages.length - i + 1);
+    sheet.innerHTML = faceHTML(pages[i], i === 0 ? 'غلاف' : i);
+    book.appendChild(sheet);
+  }
+}
+
+function updateFlipStates(){
+  const sheets = [...book.querySelectorAll('.sheet')].reverse();
+  sheets.forEach((sheet, index)=>{
+    if(index <= current-1) sheet.classList.add('flipped');
+    else sheet.classList.remove('flipped');
+  });
+}
+
+function nextPage(){
+  if(current >= pages.length-1) return;
+  current += 1;
+  updateFlipStates();
+}
+function prevPage(){
+  if(current <= 0) return;
+  current -= 1;
+  updateFlipStates();
+}
+
+renderBook();
+
+document.getElementById('openBook').addEventListener('click', ()=>{
+  body.classList.add('show-book');
+});
+document.getElementById('backHome').addEventListener('click', ()=>{
+  body.classList.remove('show-book');
+});
+document.getElementById('nextBtn').addEventListener('click', nextPage);
+document.getElementById('prevBtn').addEventListener('click', prevPage);
+document.getElementById('rightZone').addEventListener('click', nextPage);
+document.getElementById('leftZone').addEventListener('click', prevPage);
+
+document.addEventListener('keydown', (e)=>{
+  if(!body.classList.contains('show-book')) return;
+  if(e.key === 'ArrowLeft') nextPage();
+  if(e.key === 'ArrowRight') prevPage();
+  if(e.key === 'Escape') body.classList.remove('show-book');
+});
+
+let sx = 0;
+book.addEventListener('touchstart', e=>{ sx = e.changedTouches[0].clientX; }, {passive:true});
+book.addEventListener('touchend', e=>{
+  const dx = e.changedTouches[0].clientX - sx;
+  if(Math.abs(dx) < 40) return;
+  if(dx < 0) nextPage(); else prevPage();
+}, {passive:true});
+</script>
+</body>
+</html>
